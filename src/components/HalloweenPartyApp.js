@@ -693,7 +693,6 @@ export default function HalloweenPartyApp() {
   const handleDishToggle = (dishId) => {
     console.log('🎃 Toggle called for:', dishId);
     console.log('🎃 Current selection:', selectedDishes);
-    console.log('🎃 Dish object:', dishes.find(d => d.id === dishId));
     setSelectedDishes(prev => {
       const newSelection = prev.includes(dishId) 
         ? prev.filter(id => id !== dishId)
@@ -716,17 +715,17 @@ export default function HalloweenPartyApp() {
       try {
         console.log('🚀 Envoi en cours...');
         
-        // Essayer d'envoyer avec Web3Forms (si access_key configuré)
-        const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE';
+        // Envoyer avec Web3Forms
+        const web3formsKey = '91de4f66-c218-4e33-8248-0d82d1e97008';
         
-        if (web3formsKey !== 'YOUR_ACCESS_KEY_HERE') {
-          // Utiliser Web3Forms pour envoyer un vrai email
+        try {
           const formData = new FormData();
           formData.append('access_key', web3formsKey);
           formData.append('subject', `🎃 Halloween Party - Inscription de ${firstName} ${lastName}`);
-          formData.append('from_name', 'Halloween Party App');
+          formData.append('from_name', 'Halloween Party Website');
+          formData.append('email', 'yiching.uhc@gmail.com');
           formData.append('message', `
-🎃 Nouvelle inscription pour la soirée Halloween!
+🎃 NOUVELLE INSCRIPTION HALLOWEEN PARTY
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -740,39 +739,45 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
 📅 Date d'inscription: ${new Date().toLocaleString('fr-FR')}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Site: halloween2025-ten.vercel.app
           `);
 
-          try {
-            const web3response = await fetch('https://api.web3forms.com/submit', {
-              method: 'POST',
-              body: formData
-            });
-            
-            const web3result = await web3response.json();
-            console.log('📧 Web3Forms result:', web3result);
-          } catch (web3error) {
-            console.warn('⚠️ Web3Forms error:', web3error);
+          const web3response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
+          
+          const web3result = await web3response.json();
+          console.log('📧 Web3Forms result:', web3result);
+          
+          if (web3result.success) {
+            alert(`✅ Merci ${firstName} ${lastName}!\n\nVous préparerez:\n${selectedItems.join("\n")}\n\n📧 Email envoyé à Chloé!`);
           }
+        } catch (web3error) {
+          console.warn('⚠️ Web3Forms error:', web3error);
+          alert(`✅ Merci ${firstName} ${lastName}!\n\nVous préparerez:\n${selectedItems.join("\n")}\n\n⚠️ Erreur d'envoi d'email`);
         }
         
-        // Toujours enregistrer localement aussi
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            selectedDishes: selectedItems,
-          }),
-        });
+        // Aussi enregistrer localement
+        try {
+          const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              selectedDishes: selectedItems,
+            }),
+          });
 
-        const result = await response.json();
-        console.log('📬 Local result:', result);
-
-        // Message de succès
-        alert(`✅ Merci ${firstName} ${lastName}!\n\nVous préparerez:\n${selectedItems.join("\n")}\n\n📧 Chloé sera notifiée de votre participation!`);
+          const result = await response.json();
+          console.log('📬 Local result:', result);
+        } catch (localError) {
+          console.error('Local save error:', localError);
+        }
         
       } catch (error) {
         console.error('❌ Error:', error);
