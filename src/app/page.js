@@ -27,7 +27,7 @@ export default function Home() {
             onClick={() => setShowPartyApp(false)}
             className="bg-black/80 text-orange-500 px-4 py-2 rounded-lg border border-orange-500/50 hover:border-orange-500 transition-colors"
           >
-            ← Retour à l'accueil
+            ← Retour à l&apos;accueil
           </button>
         </div>
       </div>
@@ -54,13 +54,13 @@ export default function Home() {
             🎃 HALLOWEEN 🎃
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-4">
-            Prêts pour la nuit la plus terrifiante de l'année ?
+            Prêts pour la nuit la plus terrifiante de l&apos;année ?
           </p>
           
           {/* Clear Call to Action */}
           <div className="bg-orange-500/20 border border-orange-500/50 rounded-lg p-6 mb-6 max-w-2xl mx-auto">
             <p className="text-lg md:text-xl text-white font-semibold mb-2">
-              🍽️ Aidez-nous à préparer les snacks d'Halloween !
+              🍽️ Aidez-nous à préparer les snacks d&apos;Halloween !
             </p>
             <p className="text-md text-orange-200 mb-4">
               Choisissez les plats que vous souhaitez préparer pour notre festin terrifiant
@@ -97,12 +97,12 @@ export default function Home() {
           >
             <div className="text-3xl mb-4 animate-float" style={{ animationDelay: '1s' }}>🍽️ </div>
             <h3 className="text-xl font-bold mb-2 text-red-400">Buffet Terrifiant</h3>
-            <p className="text-gray-300">Organisez le festin d'Halloween le plus effrayant</p>
+            <p className="text-gray-300">Organisez le festin d&apos;Halloween le plus effrayant</p>
             <p className="text-sm text-red-300 mt-7">👨‍🍳 Cliquez pour participer</p>
           </div>
           <div 
             className="bg-black/50 p-6 rounded-lg border border-orange-500/30 hover:border-orange-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20 cursor-pointer"
-            onClick={() => alert('🎨 Atelier créatif : Sculpture de citrouilles, décoration de biscuits, création de masques terrifiants ! Rejoignez-nous dès 9h !')}
+            onClick={() => alert("🎨 Atelier créatif : Sculpture de citrouilles, décoration de biscuits, création de masques terrifiants ! Rejoignez-nous dès 9h !")}
           >
             <div className="text-3xl mb-4 animate-float">🎨</div>
             <h3 className="text-xl font-bold mb-2 text-orange-400">Atelier Créatif</h3>
@@ -112,11 +112,11 @@ export default function Home() {
           
           <div 
             className="bg-black/50 p-6 rounded-lg border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 cursor-pointer"
-            onClick={() => alert('🔍 Escape Game Halloween : "La Malédiction de la Maison Hantée" - Résolvez les énigmes pour vous échapper avant minuit ! Aidez-nous à collecter les indices !')}
+            onClick={() => alert('🔍 Escape Game Halloween : \"La Malédiction de la Maison Hantée\" - Résolvez les énigmes pour vous échapper avant minuit ! Aidez-nous à collecter les indices !')}
           >
             <div className="text-3xl mb-4 animate-float" style={{ animationDelay: '0.5s' }}>🔍</div>
             <h3 className="text-xl font-bold mb-2 text-purple-400">Escape Game Mystère</h3>
-            <p className="text-gray-300">Aidez à résoudre "La Malédiction de la Maison Hantée"</p>
+            <p className="text-gray-300">Aidez à résoudre &quot;La Malédiction de la Maison Hantée&quot;</p>
             <p className="text-sm text-purple-300 mt-2">🕛 Avant minuit...</p>
           </div> 
         </div>

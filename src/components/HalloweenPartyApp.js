@@ -1148,7 +1148,7 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                 💰 Cagnotte Halloween
               </h3>
               <p className="text-orange-100 mb-6">
-                Vous ne pouvez pas préparer de snacks ? Contribuez à la cagnotte pour l'achat des ingrédients !
+                Vous ne pouvez pas préparer de snacks ? Contribuez à la cagnotte pour l&apos;achat des ingrédients !
               </p>
               <Button 
                 onClick={() => setCurrentPage("payment")}
@@ -1266,8 +1266,8 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
             <div className="text-orange-200 space-y-2">
               <p>• Ajoutez des colorants alimentaires pour des effets plus terrifiants</p>
               <p>• Utilisez des emporte-pièces Halloween pour les formes</p>
-              <p>• Servez dans des plats sombres pour l'ambiance</p>
-              <p>• N'hésitez pas à exagérer les décorations pour l'effet Halloween !</p>
+              <p>• Servez dans des plats sombres pour l&apos;ambiance</p>
+              <p>• N&apos;hésitez pas à exagérer les décorations pour l&apos;effet Halloween !</p>
             </div>
           </Card>
 
@@ -1440,7 +1440,7 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
               <div>
                 <h5 className="text-orange-300 font-semibold mb-2">🟢 Lydia (Recommandé)</h5>
                 <ul className="text-orange-200 space-y-1">
-                  <li>• Ouvrez l'app Lydia</li>
+                  <li>• Ouvrez l&apos;app Lydia</li>
                   <li>• Scannez le QR code</li>
                   <li>• Ou cliquez sur le QR code</li>
                   <li>• Montant libre ou suggéré</li>
