@@ -1,102 +1,211 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import HalloweenBackground from '../components/HalloweenBackground';
+import SpookyButton from '../components/SpookyButton';
+import HalloweenPartyApp from '../components/HalloweenPartyApp';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [showPartyApp, setShowPartyApp] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  if (showPartyApp) {
+    return (
+      <div className="relative">
+        {/* Background Image */}
+        <div 
+          className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/cover.JPG)' }}
+        />
+        {/* Overlay for better text readability */}
+        <div className="fixed inset-0 bg-black/40" />
+        
+        <HalloweenBackground />
+        <HalloweenPartyApp />
+        {/* Back to main button */}
+        <div className="fixed top-4 left-4 z-50">
+          <button 
+            onClick={() => setShowPartyApp(false)}
+            className="bg-black/80 text-orange-500 px-4 py-2 rounded-lg border border-orange-500/50 hover:border-orange-500 transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            ← Retour à l'accueil
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen text-white relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/cover.JPG)' }}
+      />
+      {/* Overlay for better text readability */}
+      <div className="fixed inset-0 bg-black/40" />
+      
+      <HalloweenBackground />
+      
+      {/* Hero Section */}
+      <div className="flex flex-col items-center justify-center min-h-screen px-4 relative z-10">
+        {/* Halloween Title */}
+        <div className="text-center mb-8">
+          <h1 className="text-6xl md:text-8xl font-bold mb-4 text-orange-500 spooky-text">
+            🎃 HALLOWEEN 🎃
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-4">
+            Prêts pour la nuit la plus terrifiante de l'année ?
+          </p>
+          
+          {/* Clear Call to Action */}
+          <div className="bg-orange-500/20 border border-orange-500/50 rounded-lg p-6 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white font-semibold mb-2">
+              🍽️ Aidez-nous à préparer les snacks d'Halloween !
+            </p>
+            <p className="text-md text-orange-200 mb-4">
+              Choisissez les plats que vous souhaitez préparer pour notre festin terrifiant
+            </p>
+            <button 
+              onClick={() => setShowPartyApp(true)}
+              className="bg-orange-500 hover:bg-orange-600 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-500/50"
+            >
+              🎃 Choisir mes plats maintenant !
+            </button>
+          </div>
+          
+          <p className="text-lg md:text-xl text-orange-300 mb-8 font-semibold">
+            ⏰ Atelier dès 9h00 du matin !
+          </p>
+        </div>
+
+
+        {/* Spooky Animation Area */}
+        <div className="flex space-x-8 text-4xl mb-12 animate-bounce">
+          <span className="hover:scale-125 transition-transform cursor-pointer animate-float">👻</span>
+          <span className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{ animationDelay: '0.5s' }}>🦇</span>
+          <span className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{ animationDelay: '1s' }}>🕷️</span>
+          <span className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{ animationDelay: '1.5s' }}>💀</span>
+          <span className="hover:scale-125 transition-transform cursor-pointer animate-float" style={{ animationDelay: '2s' }}>🕸️</span>
+        </div>
+
+       
+        {/* Halloween Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+          <div 
+            className="bg-black/50 p-6 rounded-lg border border-red-500/30 hover:border-red-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-500/20 cursor-pointer"
+            onClick={() => setShowPartyApp(true)}
+          >
+            <div className="text-3xl mb-4 animate-float" style={{ animationDelay: '1s' }}>🍽️ </div>
+            <h3 className="text-xl font-bold mb-2 text-red-400">Buffet Terrifiant</h3>
+            <p className="text-gray-300">Organisez le festin d'Halloween le plus effrayant</p>
+            <p className="text-sm text-red-300 mt-7">👨‍🍳 Cliquez pour participer</p>
+          </div>
+          <div 
+            className="bg-black/50 p-6 rounded-lg border border-orange-500/30 hover:border-orange-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20 cursor-pointer"
+            onClick={() => alert('🎨 Atelier créatif : Sculpture de citrouilles, décoration de biscuits, création de masques terrifiants ! Rejoignez-nous dès 9h !')}
+          >
+            <div className="text-3xl mb-4 animate-float">🎨</div>
+            <h3 className="text-xl font-bold mb-2 text-orange-400">Atelier Créatif</h3>
+            <p className="text-gray-300">Sculpture de citrouilles & création de biscuits</p>
+            <p className="text-sm text-orange-300 mt-7">📅 Dès 9h du matin</p>
+          </div>
+          
+          <div 
+            className="bg-black/50 p-6 rounded-lg border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 cursor-pointer"
+            onClick={() => alert('🔍 Escape Game Halloween : "La Malédiction de la Maison Hantée" - Résolvez les énigmes pour vous échapper avant minuit ! Aidez-nous à collecter les indices !')}
+          >
+            <div className="text-3xl mb-4 animate-float" style={{ animationDelay: '0.5s' }}>🔍</div>
+            <h3 className="text-xl font-bold mb-2 text-purple-400">Escape Game Mystère</h3>
+            <p className="text-gray-300">Aidez à résoudre "La Malédiction de la Maison Hantée"</p>
+            <p className="text-sm text-purple-300 mt-2">🕛 Avant minuit...</p>
+          </div> 
+        </div>
+         
+        {/* Participants Section */}
+        <div className="mb-12 max-w-6xl mx-auto mt-20">
+          {/* Hosts Section */}
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-orange-400 text-center mb-6">
+              🎭 Nos Hôtes (3)
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+              {[
+                { name: "Ludovic", image: "/Ludovic.jpg" },
+                { name: "Chloe", image: "/Chloe.jpg" },
+                { name: "Estelle", image: "/Estelle.jpg" }
+              ].map((host, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-orange-500/50 hover:border-orange-500 transition-colors">
+                    <img 
+                      src={host.image} 
+                      alt={host.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="w-full h-full bg-orange-500/20 hidden items-center justify-center text-2xl">
+                      🎭
+                    </div>
+                  </div>
+                  <p className="text-orange-300 font-semibold">{host.name}</p>
+                  <p className="text-xs text-orange-400">Hôte</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Invites Section */}
+          <div>
+            <h3 className="text-2xl font-bold text-purple-400 text-center mb-6">
+              👥 Nos Invités (14)
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4">
+              {[
+                { name: "Julie", image: "/julie.jpg" },
+                { name: "Pierre", image: "/pierre.jpg" },
+                { name: "Jessica", image: "/jessica.jpg" },
+                { name: "Mia", image: "/mia.jpg" },
+                { name: "Thibault", image: "/thibault.jpg" },
+                { name: "Roza", image: "/roza.jpg" },
+                { name: "Benjamin", image: "/benjamin.jpg" },
+                { name: "Lilia", image: "/lilia.jpg" },
+                { name: "Diliana", image: "/diliana.jpg" },
+                { name: "Michael", image: "/michael.jpeg" },
+                { name: "Aurelien", image: "/Aurelien.JPG" },
+                { name: "Valentine", image: "/valentine.jpg" },
+                { name: "Maxime", image: "/maxime.jpg" },
+                { name: "Simon", image: "/simon.jpg" }
+              ].map((invite, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 border-purple-500/50 hover:border-purple-500 transition-colors">
+                    <img 
+                      src={invite.image} 
+                      alt={invite.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="w-full h-full bg-purple-500/20 hidden items-center justify-center text-lg">
+                      🎃
+                    </div>
+                  </div>
+                  <p className="text-purple-300 text-sm font-medium">{invite.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-black/80 py-8 text-center border-t border-orange-500/30 relative z-10">
+        <p className="text-gray-400">
+          © 2025 Site Halloween by Chloé - Joyeux Halloween ! 🎃
+        </p>
       </footer>
     </div>
   );
