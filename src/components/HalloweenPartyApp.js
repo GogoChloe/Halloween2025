@@ -693,6 +693,7 @@ export default function HalloweenPartyApp() {
   const handleDishToggle = (dishId) => {
     console.log('🎃 Toggle called for:', dishId);
     console.log('🎃 Current selection:', selectedDishes);
+    console.log('🎃 Dish object:', dishes.find(d => d.id === dishId));
     setSelectedDishes(prev => {
       const newSelection = prev.includes(dishId) 
         ? prev.filter(id => id !== dishId)
