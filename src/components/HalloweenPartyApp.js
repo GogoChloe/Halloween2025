@@ -671,8 +671,8 @@ export default function HalloweenPartyApp() {
         });
         setQrCodeDataURL(lydiaQR);
 
-        // PayPal.me URL (remplacez par votre vrai username PayPal)
-        const paypalPaymentUrl = "https://www.paypal.me/votre-username/15EUR";
+        // PayPal.me URL - sans montant pour que l'utilisateur choisisse
+        const paypalPaymentUrl = "https://www.paypal.me/chloeycchu";
         const paypalQR = await QRCode.toDataURL(paypalPaymentUrl, {
           width: 200,
           margin: 2,
@@ -835,9 +835,9 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                         dish.isDisabled 
                           ? "bg-zinc-800 border-2 border-zinc-600 opacity-60 cursor-not-allowed" 
                           : "bg-zinc-900 border-2 border-orange-500/30 hover:border-orange-500 transition-all duration-300 hover:scale-105 cursor-pointer"
-                      } overflow-hidden flex flex-col h-full`}
+                      } overflow-hidden`}
                     >
-                      <div className="relative h-48 overflow-hidden flex-shrink-0">
+                      <div className="relative h-48 overflow-hidden">
                         <ImageWithFallback 
                           src={dish.image}
                           alt={dish.nameFr}
@@ -851,8 +851,8 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                           </div>
                         )}
                       </div>
-                      <div className="p-4 flex flex-col flex-grow">
-                        <div className="flex items-start gap-3 mb-3 min-h-[4rem]">
+                      <div className="p-4">
+                        <div className="flex items-start gap-3 mb-3">
                           <Checkbox 
                             id={dish.id}
                             checked={selectedDishes.includes(dish.id)}
@@ -862,16 +862,16 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                               }
                             }}
                             disabled={dish.isDisabled}
-                            className={`mt-1 flex-shrink-0 ${
+                            className={`mt-1 ${
                               dish.isDisabled 
                                 ? "border-zinc-500 opacity-50 cursor-not-allowed" 
                                 : "border-orange-500"
                             }`}
                           />
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1">
                             <label 
                               htmlFor={dish.id}
-                              className={`block mb-1 font-semibold leading-tight ${
+                              className={`block mb-1 font-semibold ${
                                 dish.isDisabled 
                                   ? "text-zinc-500 cursor-not-allowed" 
                                   : "text-white cursor-pointer"
@@ -884,7 +884,7 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                                 </span>
                               )}
                             </label>
-                            <p className={`text-sm leading-tight ${dish.isDisabled ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                            <p className={`text-sm ${dish.isDisabled ? 'text-zinc-500' : 'text-zinc-400'}`}>
                               {dish.nameCn}
                             </p>
                           </div>
@@ -1316,59 +1316,20 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
 
           {/* Payment Options */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            {/* Lydia Payment */}
-            <div className="bg-zinc-800 border border-purple-500/30 rounded-lg p-6 text-center">
-              <h3 className="text-xl font-bold text-orange-400 mb-4">� Lydia</h3>
-              <div className="mb-4">
-                <div className="w-48 h-48 mx-auto bg-white p-2 rounded-lg mb-4">
-                  {qrCodeDataURL ? (
-                    <img 
-                      src={qrCodeDataURL} 
-                      alt="QR Code Lydia Payment"
-                      className="w-full h-full object-contain cursor-pointer"
-                      onContextMenu={(e) => {
-                        e.preventDefault();
-                        // Pour mobile : action long press
-                        navigator.clipboard?.writeText("https://lydia-app.com/pots/halloween-cagnotte-2024");
-                        alert("🔗 Lien Lydia copié ! Ouvrez l'app Lydia ou collez dans votre navigateur.");
-                      }}
-                      onClick={() => {
-                        // Pour desktop/mobile : ouvrir Lydia
-                        if (navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)) {
-                          window.location.href = "lydia://pay/halloween-cagnotte-2024";
-                        } else {
-                          window.open("https://lydia-app.com/pots/halloween-cagnotte-2024", "_blank");
-                        }
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-purple-100 animate-pulse rounded flex items-center justify-center">
-                      <span className="text-purple-600 text-sm">Génération...</span>
-                    </div>
-                  )}
-                </div>
-                <p className="text-sm text-zinc-400 mb-4">
-                  Scannez avec Lydia ou votre appareil photo
-                </p>
-              </div>
-              <Button 
-                onClick={() => {
-                  if (navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)) {
-                    // Essayer d'ouvrir l'app Lydia d'abord
-                    window.location.href = "lydia://pay/halloween-cagnotte-2024";
-                    // Fallback vers le site web après 1 seconde
-                    setTimeout(() => {
-                      window.open("https://lydia-app.com/pots/halloween-cagnotte-2024", "_blank");
-                    }, 1000);
-                  } else {
-                    window.open("https://lydia-app.com/pots/halloween-cagnotte-2024", "_blank");
-                  }
-                }}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3"
-              >
-                � Payer avec Lydia
-              </Button>
-            </div>
+          {/* Lydia Payment (à venir) */}
+<div className="bg-zinc-800 border border-purple-500/30 rounded-lg p-6 text-center">
+  <h3 className="text-xl font-bold text-orange-400 mb-4">
+    🟢 Lydia <span className="text-zinc-400 text-base">(à venir)</span>
+  </h3>
+  <div className="mb-4">
+    <div className="w-48 h-48 mx-auto bg-purple-100 rounded flex items-center justify-center">
+      <span className="text-purple-600 text-lg">Disponible prochainement</span>
+    </div>
+    <p className="text-sm text-zinc-400 mb-4">
+      Paiement Lydia sera disponible bientôt
+    </p>
+  </div>
+</div>
 
             {/* PayPal Payment */}
             <div className="bg-zinc-800 border border-blue-500/30 rounded-lg p-6 text-center">
@@ -1383,11 +1344,11 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                       onContextMenu={(e) => {
                         e.preventDefault();
                         // Pour mobile : action long press
-                        navigator.clipboard?.writeText("https://www.paypal.me/chloeycchu/15EUR");
+                        navigator.clipboard?.writeText("https://www.paypal.me/chloeycchu");
                         alert("🔗 Lien PayPal copié ! Ouvrez PayPal ou collez dans votre navigateur.");
                       }}
                       onClick={() => {
-                        window.open("https://www.paypal.me/chloeycchu/15EUR", "_blank");
+                        window.open("https://www.paypal.me/chloeycchu", "_blank");
                       }}
                     />
                   ) : (
@@ -1397,12 +1358,12 @@ ${selectedItems.map((item, index) => `   ${index + 1}. ${item}`).join('\n')}
                   )}
                 </div>
                 <p className="text-sm text-zinc-400 mb-8">
-                  Paiement international avec PayPal
+                  Choisissez votre montant sur PayPal
                 </p>
               </div>
               <Button 
                 onClick={() => {
-                  window.open("https://www.paypal.me/chloeycchu/15EUR", "_blank");
+                  window.open("https://www.paypal.me/chloeycchu", "_blank");
                 }}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3"
               >
