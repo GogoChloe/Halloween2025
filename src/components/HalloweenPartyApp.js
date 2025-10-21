@@ -654,6 +654,7 @@ export default function HalloweenPartyApp() {
   const [qrCodeDataURL, setQrCodeDataURL] = useState("");
   const [paylibQrCodeDataURL, setPaylibQrCodeDataURL] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [dishesList, setDishesList] = useState(dishes);
 
   // Generate QR codes when component mounts
   useEffect(() => {
@@ -693,6 +694,14 @@ export default function HalloweenPartyApp() {
   const handleDishToggle = (dishId) => {
     console.log('🎃 Toggle called for:', dishId);
     console.log('🎃 Current selection:', selectedDishes);
+    
+    // Check if dish is already taken
+    const dish = dishesList.find(d => d.id === dishId);
+    if (dish?.isDisabled) {
+      console.log('❌ Dish already taken by:', dish.takenBy);
+      return;
+    }
+    
     setSelectedDishes(prev => {
       const newSelection = prev.includes(dishId) 
         ? prev.filter(id => id !== dishId)
@@ -710,7 +719,7 @@ export default function HalloweenPartyApp() {
 
   const handleSubmit = async () => {
     if (firstName && lastName) {
-      const selectedItems = dishes.filter(d => selectedDishes.includes(d.id)).map(d => `${d.nameFr} (${d.nameCn})`);
+      const selectedItems = dishesList.filter(d => selectedDishes.includes(d.id)).map(d => `${d.nameFr} (${d.nameCn})`);
       
       try {
         console.log('🚀 Envoi en cours...');
@@ -752,6 +761,15 @@ Site: halloween2025-ten.vercel.app
           console.log('📧 Web3Forms result:', web3result);
           
           if (web3result.success) {
+            // Update dishes to mark them as taken
+            setDishesList(prevDishes => 
+              prevDishes.map(dish => 
+                selectedDishes.includes(dish.id)
+                  ? { ...dish, isDisabled: true, takenBy: firstName }
+                  : dish
+              )
+            );
+            
             alert(`✅ Merci ${firstName} ${lastName}!\n\nVous préparerez:\n${selectedItems.join("\n")}\n\n📧 Email envoyé à Chloé!`);
           }
         } catch (web3error) {
@@ -824,7 +842,7 @@ Site: halloween2025-ten.vercel.app
 
           {/* Categories and Dishes */}
           {categories.map(category => {
-            const categoryDishes = dishes.filter(d => d.category === category);
+            const categoryDishes = dishesList.filter(d => d.category === category);
             const emoji = categoryDishes[0]?.emoji || "";
             
             return (
@@ -852,7 +870,7 @@ Site: halloween2025-ten.vercel.app
                         {dish.isDisabled && (
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                             <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                              ✅ Pris
+                              ✅ Pris par {dish.takenBy || 'quelqu\'un'}
                             </div>
                           </div>
                         )}
@@ -1497,7 +1515,7 @@ Site: halloween2025-ten.vercel.app
           
           {selectedDishes.length > 0 && (
             <ul className="list-disc list-inside space-y-2 mb-4">
-              {dishes
+              {dishesList
                 .filter(d => selectedDishes.includes(d.id))
                 .map(dish => (
                   <li key={dish.id} className="text-white">
