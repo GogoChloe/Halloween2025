@@ -19,6 +19,8 @@ const dishes = [
     image: "https://image.hkhl.hk/f/1024p0/0x0/100/none/7f9a6a251b59b8ee0a82fb285bc5632e/2022-10/DFDF0916DEMO0100.JPG",
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
+    isDisabled: true,
+    takenBy: "Diliana",
     recipe: {
       ingredients: [
         "2 pâtes feuilletées (pour 12 personnes)",
@@ -91,6 +93,8 @@ const dishes = [
     image: "https://connetable.com/wp-content/uploads/Connetable-TombeauxHalloween-PAYSAGEpackR@SophieFrancoisMulhens-scaled-1707x1707.jpg",
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
+    isDisabled: true,
+    takenBy: "Lilia",
     recipe: {
       ingredients: [
         "1 ½ boîte de sardines sans huile, sauce tomate & basilic Connétable",
@@ -123,6 +127,8 @@ const dishes = [
     image: "https://cdn.chefclub.tools/uploads/recipes/cover-thumbnail/5e0aba6b-fe7b-4331-b04c-80f02bc043fb_QzwJhxO.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXZpbGVkJTIwZWdnc3xlbnwxfHx8fDE3NjA3MTgzNTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
+    isDisabled: true,
+    takenBy: "Aurelien",
     recipe: {
       ingredients: [
         "12 œufs (pour 12 personnes)",
@@ -159,6 +165,8 @@ const dishes = [
     image: "https://images.ricardocuisine.com/services/recipes/1011689568540e07238bc37.jpg",
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
+    isDisabled: true,
+    takenBy: "Mia",
     recipe: {
       ingredients: [
         "Bâtonnets salés (bretzel sticks)",
@@ -306,6 +314,8 @@ const dishes = [
     image: "https://i.pinimg.com/736x/00/15/3a/00153a6e51916a66788f5ef84478dce9.jpg",
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
+    isDisabled: true,
+    takenBy: "Simon",
     externalRecipeUrl: "https://www.francine.com/recettes/pizza/pizza-momies-halloween"
   },
   {
@@ -617,6 +627,8 @@ const dishes = [
     image: "https://cache.marieclaire.fr/data/photo/w2000_ci/1s6/boisson-chaude-citrouille-halloween.webp",
     category: "Boissons / 饮品",
     emoji: "🍹",
+    isDisabled: true,
+    takenBy: "Aurelien",
     externalRecipeUrl: "https://www.marieclaire.fr/cuisine/boisson-chaude-citrouille-halloween,1459057.asp"
   },
   {
