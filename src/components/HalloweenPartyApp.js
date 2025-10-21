@@ -128,7 +128,7 @@ const dishes = [
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
     isDisabled: true,
-    takenBy: "Aurelien",
+    takenBy: "Aurelien/Valentina",
     recipe: {
       ingredients: [
         "12 œufs (pour 12 personnes)",
@@ -166,7 +166,7 @@ const dishes = [
     category: "Petites bouchées & Snacks",
     emoji: "🕸️",
     isDisabled: true,
-    takenBy: "Mia",
+    takenBy: "Mia/Thibault",
     recipe: {
       ingredients: [
         "Bâtonnets salés (bretzel sticks)",
@@ -628,7 +628,7 @@ const dishes = [
     category: "Boissons / 饮品",
     emoji: "🍹",
     isDisabled: true,
-    takenBy: "Aurelien",
+    takenBy: "Aurelien/Valentina",
     externalRecipeUrl: "https://www.marieclaire.fr/cuisine/boisson-chaude-citrouille-halloween,1459057.asp"
   },
   {
@@ -666,7 +666,27 @@ export default function HalloweenPartyApp() {
   const [qrCodeDataURL, setQrCodeDataURL] = useState("");
   const [paylibQrCodeDataURL, setPaylibQrCodeDataURL] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [dishesList, setDishesList] = useState(dishes);
+  const [dishesList, setDishesList] = useState(() => {
+    // Load from localStorage on initial mount
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('halloween-dishes');
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error('Error parsing saved dishes:', e);
+        }
+      }
+    }
+    return dishes;
+  });
+
+  // Save to localStorage whenever dishesList changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('halloween-dishes', JSON.stringify(dishesList));
+    }
+  }, [dishesList]);
 
   // Generate QR codes when component mounts
   useEffect(() => {
