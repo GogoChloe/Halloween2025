@@ -629,7 +629,7 @@ const dishes = [
     emoji: "🍹",
     isDisabled: true,
     takenBy: "Aurelien/Valentina",
-    externalRecipeUrl: "https://www.marieclaire.fr/cuisine/boisson-chaude-citrouille-halloween,1459057.asp"
+    externalRecipeUrl: "https://www.marieclaire.fr/cuisine/cocktail-d-halloween-chaud-a-la-citrouille,1462311.asp#:~:text=Dans%20une%20casserole%2C%20portez%20à,ajoutez%20un%20peu%20de%20rhum."
   },
   {
     id: "potion-sorciere",
@@ -935,9 +935,9 @@ Site: halloween2025-ten.vercel.app
                         dish.isDisabled 
                           ? "bg-zinc-800 border-2 border-zinc-600 opacity-60 cursor-not-allowed" 
                           : "bg-zinc-900 border-2 border-orange-500/30 hover:border-orange-500 transition-all duration-300 hover:scale-105 cursor-pointer"
-                      } overflow-hidden`}
+                      } overflow-hidden flex flex-col`}
                     >
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-48 overflow-hidden flex-shrink-0">
                         <ImageWithFallback 
                           src={dish.image}
                           alt={dish.nameFr}
@@ -951,8 +951,8 @@ Site: halloween2025-ten.vercel.app
                           </div>
                         )}
                       </div>
-                      <div className="p-4">
-                        <div className="flex items-start gap-3 mb-3">
+                      <div className="p-4 flex flex-col flex-grow">
+                        <div className="flex items-start gap-3 mb-3 min-h-[4rem]">
                           <Checkbox 
                             id={dish.id}
                             checked={selectedDishes.includes(dish.id)}
@@ -962,16 +962,16 @@ Site: halloween2025-ten.vercel.app
                               }
                             }}
                             disabled={dish.isDisabled}
-                            className={`mt-1 ${
+                            className={`mt-1 flex-shrink-0 ${
                               dish.isDisabled 
                                 ? "border-zinc-500 opacity-50 cursor-not-allowed" 
                                 : "border-orange-500"
                             }`}
                           />
-                          <div className="flex-1">
+                          <div className="flex-1 min-h-full flex flex-col justify-center">
                             <label 
                               htmlFor={dish.id}
-                              className={`block mb-1 font-semibold ${
+                              className={`block mb-1 font-semibold leading-tight ${
                                 dish.isDisabled 
                                   ? "text-zinc-500 cursor-not-allowed" 
                                   : "text-white cursor-pointer"
@@ -984,12 +984,12 @@ Site: halloween2025-ten.vercel.app
                                 </span>
                               )}
                             </label>
-                            <p className={`text-sm ${dish.isDisabled ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                            <p className={`text-sm leading-tight ${dish.isDisabled ? 'text-zinc-500' : 'text-zinc-400'}`}>
                               {dish.nameCn}
                             </p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mt-auto">
                           <Button
                             onClick={(e) => {
                               e.stopPropagation();
@@ -999,7 +999,7 @@ Site: halloween2025-ten.vercel.app
                                 handleViewRecipe(dish);
                               }
                             }}
-                            className="flex-1 bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/50 hover:border-orange-500 text-sm py-2"
+                            className="flex-1 bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/50 hover:border-orange-500 text-sm py-2 h-10"
                           >
                             📖 Voir la recette
                           </Button>
@@ -1009,7 +1009,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://casavida.fr/carnet-culinaire/crackers-fantomes/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1021,7 +1021,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.supertoinette.com/recette/7726/oeufs-mimosa-d-halloween.html", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1033,7 +1033,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.madrange.fr/nos-recettes/momies-feuilletees-aux-knacks/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1045,7 +1045,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.marieclaire.fr/cuisine/tarte-d-halloween-au-potimarron-roti-et-confit-de-canard,1462334.asp", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1057,7 +1057,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://piao.fr/2022/10/quiche-potimarron-dhalloween/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1069,7 +1069,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://devorezmoi.com/2021/10/24/cervelles-croustillantes/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1081,7 +1081,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.marieclaire.fr/cuisine/doigts-de-sorciere-sales-pour-halloween,1459053.asp", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1093,7 +1093,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.ricardocuisine.com/recettes/6471-balais-de-sorciere-bretzels-au-fromage", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1105,7 +1105,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://cuisine-addict.com/doigts-de-sorciere-au-fromage/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1117,7 +1117,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://connetable.com/recettes/tombeaux-dhalloween/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette originale"
                             >
                               🔗
@@ -1130,7 +1130,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.marieclaire.fr/cuisine/chips-de-mais-en-forme-de-chauve-souris,1459055.asp", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Marie Claire"
                             >
                               🔗
@@ -1142,7 +1142,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.fourchette-et-bikini.fr/recettes/cupcakes-fantomes-pour-halloween-12519.html", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Fourchette et Bikini"
                             >
                               🔗
@@ -1154,7 +1154,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.francine.com/recettes/desserts-et-gouters/biscuits-citrouille-halloween-au-chocolat", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Francine"
                             >
                               🔗
@@ -1166,7 +1166,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.marieclaire.fr/cuisine/biscuits-sables-d-halloween,1435756.asp", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Marie Claire"
                             >
                               🔗
@@ -1178,7 +1178,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://cookinbreak.com/recettes/panna-cotta-dhalloween-220#google_vignette", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Cookinbreak"
                             >
                               🔗
@@ -1190,7 +1190,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://evasion-culinaire.com/yeux-pour-halloween/", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Évasion Culinaire"
                             >
                               🔗
@@ -1202,7 +1202,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.marieclaire.fr/cuisine/bloody-mary-d-halloween,1462278.asp", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Marie Claire"
                             >
                               🔗
@@ -1212,9 +1212,9 @@ Site: halloween2025-ten.vercel.app
                             <Button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                window.open("https://www.marieclaire.fr/cuisine/boisson-chaude-citrouille-halloween,1459057.asp", "_blank");
+                                window.open("https://www.marieclaire.fr/cuisine/cocktail-d-halloween-chaud-a-la-citrouille,1462311.asp#:~:text=Dans%20une%20casserole%2C%20portez%20à,ajoutez%20un%20peu%20de%20rhum.", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette Marie Claire"
                             >
                               🔗
@@ -1226,7 +1226,7 @@ Site: halloween2025-ten.vercel.app
                                 e.stopPropagation();
                                 window.open("https://www.1001cocktails.com/recettes/recette_cocktail-d-halloween-potion-magique-pomme-et-menthe_534502.aspx", "_blank");
                               }}
-                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2"
+                              className="px-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/50 hover:border-blue-500 text-sm py-2 h-10 flex items-center justify-center"
                               title="Recette 1001 Cocktails"
                             >
                               🔗
@@ -1248,7 +1248,7 @@ Site: halloween2025-ten.vercel.app
                 💰 Cagnotte Halloween
               </h3>
               <p className="text-orange-100 mb-6">
-                Vous ne pouvez pas préparer de snacks ? Contribuez à la cagnotte pour l&apos;achat des ingrédients !
+                Vous ne pouvez pas préparer de snacks ? Contribuez à la cagnotte pour un traiteur personnel.
               </p>
               <Button 
                 onClick={() => setCurrentPage("payment")}
