@@ -1,0 +1,32 @@
+[
+  {
+    "dishId": "mini-pizzas",
+    "takenBy": "Simon",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  },
+  {
+    "dishId": "sandwichs-tombeaux",
+    "takenBy": "Lilia",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  },
+  {
+    "dishId": "momies-saucisses",
+    "takenBy": "Diliana",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  },
+  {
+    "dishId": "oeuf-mimosa",
+    "takenBy": "Aurelien",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  },
+  {
+    "dishId": "balais-sorciere",
+    "takenBy": "Mia",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  },
+  {
+    "dishId": "punch-orange",
+    "takenBy": "Aurelien",
+    "timestamp": "2025-10-21T00:00:00.000Z"
+  }
+]

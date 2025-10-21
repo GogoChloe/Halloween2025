@@ -666,27 +666,40 @@ export default function HalloweenPartyApp() {
   const [qrCodeDataURL, setQrCodeDataURL] = useState("");
   const [paylibQrCodeDataURL, setPaylibQrCodeDataURL] = useState("");
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [dishesList, setDishesList] = useState(() => {
-    // Load from localStorage on initial mount
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('halloween-dishes');
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          console.error('Error parsing saved dishes:', e);
-        }
-      }
-    }
-    return dishes;
-  });
+  const [dishesList, setDishesList] = useState(dishes);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Save to localStorage whenever dishesList changes
+  // Load taken dishes from server on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('halloween-dishes', JSON.stringify(dishesList));
-    }
-  }, [dishesList]);
+    const loadTakenDishes = async () => {
+      try {
+        const response = await fetch('/api/dishes');
+        const data = await response.json();
+        
+        if (data.success && data.takenDishes) {
+          // Merge server data with local dishes array
+          const updatedDishes = dishes.map(dish => {
+            const takenInfo = data.takenDishes.find(t => t.dishId === dish.id);
+            if (takenInfo) {
+              return {
+                ...dish,
+                isDisabled: true,
+                takenBy: takenInfo.takenBy
+              };
+            }
+            return dish;
+          });
+          setDishesList(updatedDishes);
+        }
+      } catch (error) {
+        console.error('Error loading taken dishes:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadTakenDishes();
+  }, []);
 
   // Generate QR codes when component mounts
   useEffect(() => {
@@ -793,14 +806,35 @@ Site: halloween2025-ten.vercel.app
           console.log('📧 Web3Forms result:', web3result);
           
           if (web3result.success) {
-            // Update dishes to mark them as taken
-            setDishesList(prevDishes => 
-              prevDishes.map(dish => 
-                selectedDishes.includes(dish.id)
-                  ? { ...dish, isDisabled: true, takenBy: firstName }
-                  : dish
-              )
-            );
+            // Save to server
+            try {
+              const saveResponse = await fetch('/api/dishes', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  dishes: selectedDishes,
+                  firstName: firstName
+                }),
+              });
+              
+              const saveResult = await saveResponse.json();
+              console.log('💾 Server save result:', saveResult);
+              
+              if (saveResult.success) {
+                // Update local state to reflect server state
+                setDishesList(prevDishes => 
+                  prevDishes.map(dish => 
+                    selectedDishes.includes(dish.id)
+                      ? { ...dish, isDisabled: true, takenBy: firstName }
+                      : dish
+                  )
+                );
+              }
+            } catch (saveError) {
+              console.error('Error saving to server:', saveError);
+            }
             
             alert(`✅ Merci ${firstName} ${lastName}!\n\nVous préparerez:\n${selectedItems.join("\n")}\n\n📧 Email envoyé à Chloé!`);
           }
@@ -850,6 +884,16 @@ Site: halloween2025-ten.vercel.app
   if (currentPage === "selection") {
     return (
       <div className="min-h-screen bg-black relative z-10">
+        {/* Loading indicator */}
+        {isLoading && (
+          <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-6xl mb-4 animate-bounce">🎃</div>
+              <p className="text-orange-500 text-xl">Chargement...</p>
+            </div>
+          </div>
+        )}
+        
         {/* Hero Image */}
         <div className="relative w-full h-[60vh] overflow-hidden">
           <ImageWithFallback 
